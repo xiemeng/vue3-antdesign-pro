@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import { FixedLayout, UserLayout,BlankLayout,BasicLayout,NestedLayout } from '@/layouts'
 
+// NestedLayout 竖屏模式 BasicLayout 横屏模式  FixedLayout 自定义模式
 export const asyncRouterMap = [{
   path: '/',
   name: 'index',
@@ -12,13 +13,13 @@ export const asyncRouterMap = [{
       path: '/AboutView',
       name: 'AboutView',
       component: () => import('@/views/AboutView.vue'),
-      meta: { title: 'about', keepAlive: true, icon: 'build' },
+      meta: { title: '欢迎', icon: 'icon-icon-test' },
     },
     {
       path: '/home',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
-      meta: { title: 'home', keepAlive: true, icon: 'step-backward-outlined' },
+      meta: { title: '管理页', icon: 'icon-tuijian' },
     },
   ]
 },
