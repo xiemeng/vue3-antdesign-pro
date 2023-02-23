@@ -6,5 +6,5 @@
   <step-backward-outlined></step-backward-outlined>
 </template>
 <script>
-
+console.log('about')
 </script>

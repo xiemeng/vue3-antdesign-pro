@@ -13,13 +13,13 @@ export const asyncRouterMap = [{
       path: '/AboutView',
       name: 'AboutView',
       component: () => import('@/views/AboutView.vue'),
-      meta: { title: '欢迎', icon: 'icon-icon-test' },
+      meta: { title: '欢迎', icon: 'icon-icon-test', flat: true },
     },
     {
       path: '/home',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
-      meta: { title: '管理页', icon: 'icon-tuijian' },
+      meta: { title: '管理页', icon: 'icon-tuijian', flat: true },
     },
   ]
 },

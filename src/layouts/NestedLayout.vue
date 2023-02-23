@@ -66,7 +66,11 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watchEffect, onMounted } from 'vue';
 import { useRouter, type RouteRecordRaw, type RouteRecordName } from 'vue-router';
-import { Avatar as AAvatar, Breadcrumb as ABreadcrumb, BreadcrumbItem as ABreadcrumbItem } from 'ant-design-vue';
+import {
+  Avatar as AAvatar,
+  Breadcrumb as ABreadcrumb,
+  BreadcrumbItem as ABreadcrumbItem,
+} from 'ant-design-vue';
 import { getMenuData, clearMenuItem, WaterMark } from '@ant-design-vue/pro-layout';
 import { UserOutlined } from '@ant-design/icons-vue';
 import type { RouteContextProps } from '@ant-design-vue/pro-layout';
@@ -114,7 +118,9 @@ watchEffect(() => {
     const matched = router.currentRoute.value.matched.concat();
     baseState.selectedKeys = matched.filter(r => r.name !== 'index').map(r => r.path);
     baseState.childrenSelectedKeys = matched.filter(r => r.name !== 'index').map(r => r.path);
-    baseState.childrenOpenKeys = matched.filter(r => r.path !== router.currentRoute.value.path).map(r => r.path);
+    baseState.childrenOpenKeys = matched
+      .filter(r => r.path !== router.currentRoute.value.path)
+      .map(r => r.path);
   }
 });
 onMounted(() => {

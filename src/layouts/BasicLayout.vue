@@ -14,7 +14,7 @@
     <template #menuHeaderRender>
       <router-link :to="{ path: '/' }">
         <img src="https://alicdn.antdv.com/v2/assets/logo.1ef800a8.svg" />
-        <h1>Preview Pro</h1>
+        <h1>标题</h1>
       </router-link>
     </template>
     <template #rightContentRender>
@@ -55,7 +55,7 @@ const state = reactive<Omit<RouteContextProps, 'menuData'>>({
 });
 const loading = ref(false);
 const proConfig = ref({
-  layout: 'mix',
+  layout: 'sidemenu', // sidemenu topmenu ,mix
   navTheme: 'light',
   fixedHeader: true,
   fixSiderbar: true,
@@ -79,7 +79,9 @@ watch(
   () => {
     const matched = router.currentRoute.value.matched.concat();
     state.selectedKeys = matched.filter(r => r.name !== 'index').map(r => r.path);
-    state.openKeys = matched.filter(r => r.path !== router.currentRoute.value.path).map(r => r.path);
+    state.openKeys = matched
+      .filter(r => r.path !== router.currentRoute.value.path)
+      .map(r => r.path);
   },
   {
     immediate: true,
