@@ -33,10 +33,12 @@
     </template>
     <SettingDrawer v-model="proConfig" />
     <RouterView v-slot="{ Component, route }">
-      <transition name="slide-left" mode="out-in">
+      <!-- <transition name="slide-left" mode="out-in">
         <component :is="Component" :key="route.path" />
-      </transition>
+      </transition> -->
+      <component :is="Component" :key="route.path" />
     </RouterView>
+
   </pro-layout>
 </template>
 
@@ -56,7 +58,7 @@ const state = reactive<Omit<RouteContextProps, 'menuData'>>({
 const loading = ref(false);
 const proConfig = ref({
   layout: 'sidemenu', // sidemenu topmenu ,mix
-  navTheme: 'light',
+  navTheme: 'dark', // dark light
   fixedHeader: true,
   fixSiderbar: true,
   splitMenus: true,
