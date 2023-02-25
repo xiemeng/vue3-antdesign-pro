@@ -15,6 +15,24 @@ export default defineConfig(() => {
   const lifecycle = process.env.npm_lifecycle_event;
 
   return {
+    proxy: {
+      '/api': {
+        // target: 'http://10.13.9.194:5096/',  // 吴澄维
+        // target: 'http://10.13.9.36:10260/', // 钟均
+        // target: 'http://10.13.9.191:5096/', // 李逸
+        // target: 'http://10.13.9.196:5096/', // 陈涛
+        // target: 'http://10.13.9.94:10250/', // 崔荣鹏
+        // target: 'http://10.13.9.91:10032/', // 王文强
+        target: 'http://47.243.93.92:5096/', // dev环境
+        // target: 'http://10.15.64.6:5096/', // 李奇胜
+        // target: 'http://10.13.9.195:5096/', //羊冠宝
+        ws: false,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
     plugins: [
       vue({
         reactivityTransform: false
