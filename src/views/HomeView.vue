@@ -112,7 +112,7 @@ const columns = ref([
     key: 'create_time',
   },
 ]);
-const clientList = ref([]);
+const clientList = ref([{}]);
 const num = ref<number>(50);
 const pagination = ref({
   current: 1,
