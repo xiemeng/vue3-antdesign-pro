@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
+    AButton: typeof import('ant-design-vue/es')['Button']
     ACol: typeof import('ant-design-vue/es')['Col']
     ADivider: typeof import('ant-design-vue/es')['Divider']
     ADrawer: typeof import('ant-design-vue/es')['Drawer']
@@ -16,8 +17,11 @@ declare module 'vue' {
     ARadio: typeof import('ant-design-vue/es')['Radio']
     ARadioGroup: typeof import('ant-design-vue/es')['RadioGroup']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ASelect: typeof import('ant-design-vue/es')['Select']
+    ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
     ASpace: typeof import('ant-design-vue/es')['Space']
     ASwitch: typeof import('ant-design-vue/es')['Switch']
+    ATable: typeof import('ant-design-vue/es')['Table']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     RightContent: typeof import('./components/RightContent/RightContent.vue')['default']
     SettingDrawer: typeof import('./components/SettingDrawer/SettingDrawer.vue')['default']

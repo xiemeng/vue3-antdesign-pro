@@ -1045,6 +1045,11 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@*:
+  version "10.0.0"
+  resolved "https://registry.npmmirror.com/commander/-/commander-10.0.0.tgz#71797971162cd3cf65f0b9d24eb28f8d303acdf1"
+  integrity sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==
+
 compute-scroll-into-view@^1.0.20:
   version "1.0.20"
   resolved "https://registry.npmmirror.com/compute-scroll-into-view/-/compute-scroll-into-view-1.0.20.tgz#1768b5522d1172754f5d0c9b02de3af6be506a43"
@@ -1961,6 +1966,13 @@ minimatch@^3.0.4, minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
+
+mockjs2@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npmmirror.com/mockjs2/-/mockjs2-1.0.8.tgz#37ca061d6c3319d888292aef656434380971c94c"
+  integrity sha512-IXY9wzq3Pr2tybkJnT+dzrTz0GBRTtgXc7Cke/UUQyyWtbjDrck8uZ3NmMF4LaWgAD8vm8EMGcBk4Itc6nzpRg==
+  dependencies:
+    commander "*"
 
 moment@^2.29.4:
   version "2.29.4"
