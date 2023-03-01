@@ -44,7 +44,7 @@
             </div>
           </div>
           <a-table :columns="columns" :data-source="clientList" :pagination="pagination" @change="change" class="tableDV"
-            :rowKey="(record, index) => { return String(index) }" :loading="tableLoading">
+            rowKey="id" :loading="tableLoading">
             <template #bodyCell="{ column }">
               <template v-if="column.key === 'cover_image_url'">
                 <a-avatar class="cover" :src="column.cover_image_url" :size="64" shape="square"
@@ -79,7 +79,6 @@ function rest() {
   getList();
 }
 // 表格
-
 const tableLoading = ref(false);
 const columns = reactive([
   {
@@ -147,7 +146,7 @@ function getList() {
   clientList.push({
     title: clientList[clientList.length - 1].title + 1,
   });
-  console.log('执行了', clientList.length - 1);
+  pagination.total = clientList.length;
 }
 onMounted(() => {
   getList();
