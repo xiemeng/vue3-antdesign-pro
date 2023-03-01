@@ -4,5 +4,5 @@ interface Book {
 }
 interface UserList {
   account: string,
-  id: string
+  id: number
 }

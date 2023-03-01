@@ -4,7 +4,7 @@
       <div class="left">
         <header class="filter-header flex-row">
           <div class="filter-item flex-row">
-            <a-select placeholder="请选择账号" style="width:200px;" v-model="dyUserId">
+            <a-select placeholder="请选择账号" style="width:200px;" v-model:value="dyUserId">
               <a-select-option :key="item.id" :value="item.account" v-for="item in userList">{{ item.account
               }}</a-select-option>
             </a-select>
@@ -65,6 +65,7 @@ const videoTitle = ref(undefined);
 const userList = reactive<UserList[]>([]);
 function QueryCommon() {
   pagination.current = 2;
+  getList();
 }
 
 function rest() {
@@ -78,6 +79,7 @@ function rest() {
   getList();
 }
 // 表格
+
 const tableLoading = ref(false);
 const columns = reactive([
   {
@@ -127,7 +129,7 @@ const columns = reactive([
     key: 'create_time',
   },
 ]);
-const clientList = reactive([{}]);
+const clientList = reactive([{ title: 1 }]);
 const num = ref<number>(50);
 let pagination = reactive({
   current: 1,
@@ -142,10 +144,17 @@ function openWindow(url: string) {
   window.open(url);
 }
 function getList() {
-  // console.log('执行了');
+  clientList.push({
+    title: clientList[clientList.length - 1].title + 1,
+  });
+  console.log('执行了', clientList.length - 1);
 }
 onMounted(() => {
   getList();
+  userList.push({
+    account: '张飞',
+    id: 1,
+  });
 });
 </script>
 
