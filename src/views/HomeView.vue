@@ -5,11 +5,12 @@
         <header class="filter-header flex-row">
           <div class="filter-item flex-row">
             <a-select placeholder="请选择账号" style="width:200px;" v-model="dyUserId">
-              <a-select-option :key="item.id" :value="item.account" v-for="item in userList">{{ item.account  }}</a-select-option>
+              <a-select-option :key="item.id" :value="item.account" v-for="item in userList">{{ item.account
+              }}</a-select-option>
             </a-select>
           </div>
           <div class="filter-item flex-row">
-            <a-input allowClear placeholder="请输入视频标题" v-model="videoTitle" style="width: 200px" />
+            <a-input allowClear placeholder="请输入视频标题" v-model:value="videoTitle" style="width: 200px" />
           </div>
           <div class="filter-item flex-row align-right">
             <a-button type="primary" class="btn-dv" @click="QueryCommon">查询</a-button>
@@ -42,10 +43,12 @@
               </div>
             </div>
           </div>
-          <a-table :columns="columns" :data-source="clientList" :pagination="pagination" @change="change" class="tableDV" :rowKey="(record,index)=>{return String(index)}" :loading="tableLoading">
+          <a-table :columns="columns" :data-source="clientList" :pagination="pagination" @change="change" class="tableDV"
+            :rowKey="(record, index) => { return String(index) }" :loading="tableLoading">
             <template #bodyCell="{ column }">
               <template v-if="column.key === 'cover_image_url'">
-                <a-avatar class="cover" :src="column.cover_image_url" :size="64" shape="square" @click="openWindow(column.embed_link)"></a-avatar>
+                <a-avatar class="cover" :src="column.cover_image_url" :size="64" shape="square"
+                  @click="openWindow(column.embed_link)"></a-avatar>
               </template>
             </template>
           </a-table>
@@ -59,12 +62,24 @@
 // 搜索条件
 const dyUserId = ref(undefined);
 const videoTitle = ref(undefined);
-const userList = ref<UserList[]>([]);
-function QueryCommon() {}
-function rest() {}
+const userList = reactive<UserList[]>([]);
+function QueryCommon() {
+  pagination.current = 2;
+}
+
+function rest() {
+  videoTitle.value = undefined;
+  dyUserId.value = undefined;
+  pagination = {
+    current: 1,
+    pageSize: 20,
+    total: 0,
+  };
+  getList();
+}
 // 表格
 const tableLoading = ref(false);
-const columns = ref([
+const columns = reactive([
   {
     title: '视频标题',
     dataIndex: 'title',
@@ -112,64 +127,79 @@ const columns = ref([
     key: 'create_time',
   },
 ]);
-const clientList = ref([{}]);
+const clientList = reactive([{}]);
 const num = ref<number>(50);
-const pagination = ref({
+let pagination = reactive({
   current: 1,
   pageSize: 20,
   total: 0,
 });
 function change() {}
 function handleMenuClick(val: any) {
-  console.log(val);
   num.value = Number(val.key);
 }
 function openWindow(url: string) {
   window.open(url);
 }
+function getList() {
+  // console.log('执行了');
+}
+onMounted(() => {
+  getList();
+});
 </script>
 
 <style lang="less" scoped>
 .m-10 {
   margin-bottom: 20px;
 }
+
 .m-l-30 {
   margin-left: 48px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
 .txt-rt {
   text-align: right;
 }
+
 .bg {
   background: #fff;
 }
+
 .img-big {
   width: 100%;
   padding: 20px;
 }
+
 .flex-between {
   justify-content: space-between;
   align-content: space-between;
   margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
+
   h2 {
     margin-right: 11px;
     margin-bottom: 0;
   }
 }
+
 .flex {
   display: flex;
   align-items: center;
+
   img {
     width: 120px;
     height: 120px;
     border-radius: 6px;
   }
+
   div {
     margin-left: 10px;
   }
+
   .sp-1 {
     color: #000;
     height: 35px;
@@ -177,45 +207,55 @@ function openWindow(url: string) {
     width: 100px;
     text-align: right;
   }
+
   .sp-2 {
     color: #666;
     height: 35px;
     line-height: 35px;
   }
+
   .sp-22 {
     width: 300px;
     color: #000;
   }
 }
+
 .btn-dv {
   margin-right: 15px;
 }
+
 .flex-row {
   display: flex;
   align-items: center;
 }
+
 .flex-row.align-right {
   display: flex;
   -webkit-box-pack: end;
   justify-content: flex-end;
 }
+
 .flex-right {
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
 }
+
 .filter-header {
   position: relative;
   padding: 16px 84px 0 24px;
   background: #fff;
+
   .reset-btn {
     position: absolute;
     right: 24px;
     bottom: 16px;
   }
+
   .filter-item {
     margin-right: 32px;
     margin-bottom: 16px;
+
     label {
       color: rgba(0, 0, 0, 0.65);
       white-space: nowrap;
@@ -226,15 +266,18 @@ function openWindow(url: string) {
 .tableDV {
   background: #fff;
 }
+
 .img-a {
   display: flex;
   align-items: center;
+
   img {
     width: 60px;
     height: 60px;
     border-radius: 3px;
     cursor: zoom-in;
   }
+
   .nameDv {
     margin-left: 10px;
     width: 180px;
@@ -243,19 +286,23 @@ function openWindow(url: string) {
     white-space: nowrap; //不换行
   }
 }
+
 .section {
   display: flex;
+
   .left {
     // width: 75%;
     // margin-right: 20px;
     width: 100%;
   }
+
   .right {
     flex: 1;
     height: calc(~'100vh -  155px');
     overflow: auto;
   }
 }
+
 .cover {
   cursor: pointer;
 }
