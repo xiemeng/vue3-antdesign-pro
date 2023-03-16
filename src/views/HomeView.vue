@@ -4,13 +4,19 @@
       <div class="left">
         <header class="filter-header flex-row">
           <div class="filter-item flex-row">
-            <a-select placeholder="请选择账号" style="width:200px;" v-model:value="dyUserId">
-              <a-select-option :key="item.id" :value="item.account" v-for="item in userList">{{ item.account
-              }}</a-select-option>
+            <a-select placeholder="请选择账号" style="width: 200px" v-model:value="dyUserId">
+              <a-select-option :key="item.id" :value="item.account" v-for="item in userList">
+                {{ item.account }}
+              </a-select-option>
             </a-select>
           </div>
           <div class="filter-item flex-row">
-            <a-input allowClear placeholder="请输入视频标题" v-model:value="videoTitle" style="width: 200px" />
+            <a-input
+              allowClear
+              placeholder="请输入视频标题"
+              v-model:value="videoTitle"
+              style="width: 200px"
+            />
           </div>
           <div class="filter-item flex-row align-right">
             <a-button type="primary" class="btn-dv" @click="QueryCommon">查询</a-button>
@@ -33,22 +39,33 @@
                     </a-menu>
                   </template>
 
-                  <a-button style="margin-left: 8px">{{ num }}
+                  <a-button style="margin-left: 8px">
+                    {{ num }}
                     <a-icon type="down" />
                   </a-button>
                 </a-dropdown>
               </div>
-              <div class="Publicdv">
-
-              </div>
+              <div class="Publicdv"></div>
             </div>
           </div>
-          <a-table :columns="columns" :data-source="clientList" :pagination="pagination" @change="change" class="tableDV"
-            rowKey="id" :loading="tableLoading">
+          <a-table
+            :columns="columns"
+            :data-source="clientList"
+            :pagination="pagination"
+            @change="change"
+            class="tableDV"
+            rowKey="id"
+            :loading="tableLoading"
+          >
             <template #bodyCell="{ column }">
               <template v-if="column.key === 'cover_image_url'">
-                <a-avatar class="cover" :src="column.cover_image_url" :size="64" shape="square"
-                  @click="openWindow(column.embed_link)"></a-avatar>
+                <a-avatar
+                  class="cover"
+                  :src="column.cover_image_url"
+                  :size="64"
+                  shape="square"
+                  @click="openWindow(column.embed_link)"
+                ></a-avatar>
               </template>
             </template>
           </a-table>
@@ -71,11 +88,9 @@ function QueryCommon() {
 function rest() {
   videoTitle.value = undefined;
   dyUserId.value = undefined;
-  pagination = {
-    current: 1,
-    pageSize: 20,
-    total: 0,
-  };
+  pagination.current = 1;
+  pagination.pageSize = 20;
+  pagination.total = 0;
   getList();
 }
 // 表格
@@ -147,6 +162,7 @@ function getList() {
     title: clientList[clientList.length - 1].title + 1,
   });
   pagination.total = clientList.length;
+  console.log(pagination);
 }
 onMounted(() => {
   getList();
@@ -155,30 +171,48 @@ onMounted(() => {
     id: 1,
   });
 });
+const yongheng: UserList[] = [
+  {
+    account: '张飞',
+    id: 1,
+  },
+];
+const array = [2, 1, 3, 57, 8];
+// 冒泡排序
+for (let index = 0; index < array.length; index++) {
+  for (let j = 0; j < index; j++) {
+    if (array[index] < array[j]) {
+      const str = array[index];
+      array[index] = array[j];
+      array[j] = str;
+    }
+  }
+}
+// 快速排序
+function bubble(arr: any) {
+  if (arr.length < 2) {
+    return arr;
+  }
+  const centerIndex = Math.floor(arr.length / 2);
+  const left: [] = [];
+  const right: [] = [];
+  arr.forEach((element: []) => {
+    if (element < arr[centerIndex]) {
+      left.push(element);
+    }
+    if (element > arr[centerIndex]) {
+      right.push(element);
+    }
+  });
+  return bubble(left).concat(arr[centerIndex], right);
+}
+
+console.log(bubble(array));
 </script>
 
 <style lang="less" scoped>
-.m-10 {
-  margin-bottom: 20px;
-}
-
-.m-l-30 {
-  margin-left: 48px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.txt-rt {
-  text-align: right;
-}
-
 .bg {
   background: #fff;
-}
-
-.img-big {
-  width: 100%;
-  padding: 20px;
 }
 
 .flex-between {
